@@ -1,0 +1,172 @@
+% Fernando Saca and Stan Warford
+% Pepperdine University
+% File: Case-Analysis
+% !TEX TS-program = xelatex
+
+\documentclass[12pt, fleqn, leqno]{article}
+
+\usepackage[slantedGreek]{mathptmx}
+\usepackage{amsmath, amsthm, amssymb,latexsym}
+\usepackage{wasysym}                                % For temporal operators, Diamond and Box
+\usepackage{eucal}                                  % For temporal operators, Until and Wait
+\usepackage{booktabs}                               % For table rules
+\usepackage{boxedminipage}                          % For boxing text in Hasse diagram
+\usepackage{paralist}
+\usepackage{ellipsis}
+\usepackage{array}
+
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
+
+\newcommand{\lgap}{2pt}                             % Line gap
+\newcommand{\llgap}{6pt}                            % Larger line gap
+\newcommand{\lllgap}{12pt}                          % Gap between tables
+\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
+\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
+\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
+\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
+\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
+\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
+
+% Macros for Temporal Operators
+\newcommand{\Until}{\;\mathcal{U}\;}
+\newcommand{\Wait}{\;\mathcal{W}\;}
+\newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
+\newcommand{\Event}{\Diamond\,}
+\newcommand{\Always}{\Box\,}
+
+\DeclareMathOperator{\divides}{divides}
+
+\newcommand{\myqed}{\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\myqedtab}{\hspace{384pt}}              % For flush right qed symbol in tabbing environment. No longer used.
+\newcommand{\spacer}{\vspace{-30pt}}
+\newcommand{\firstspacer}{\vspace{-26pt}}
+
+% Thanks to David Gries for sharing the following macros
+% Macros for quantifications.
+\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
+\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
+\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
+\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
+\newcommand{\all}{\forall}                          % Universal quantification
+\newcommand{\ext}{\exists}                          % Existential quantification
+
+% Macros for proof hints
+\newcommand{\Gll} {\langle}                         % Open hint
+\newcommand{\Ggg} {\rangle}                         % Close hint
+\newlength{\Glllength}                              % Length of open hint symbol
+\settowidth{\Glllength}{$.\Gll$}
+\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
+\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
+\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
+\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
+
+% Single and double quotes
+\newcommand{\Lq}{\mbox{`}}
+\newcommand{\Rq}{\mbox{'}}
+\newcommand{\Lqq}{\mbox{``}}
+\newcommand{\Rqq}{\mbox{''}}
+
+\oddsidemargin  0.0in
+\evensidemargin 0.0in
+\textwidth      6.0in
+\headheight     0.0in
+\topmargin      0.0in
+\textheight=8.8in
+%\parindent=0in
+%\pagestyle{plain}
+
+\pagestyle{myheadings} 
+\markboth{\textbf{Draft} (\today)} {\textbf{Draft} (\today)}
+
+\title{Proof of (3.89.1), and counterexample of its converse}
+
+\author{
+   Fernando Saca\\
+   Pepperdine University\\
+   Malibu, CA 90263}
+\date{} % Required for no date to appear in heading
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This paper shows two proofs for (3.89.1), $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, the theorem upon which case analysis is based. One proof utilizes (3.89) Shannon; the other does not. Both of these proofs avoid the use of deduction, which would be illegitimate given that proof techniques are not introduced until Chapter 4. Finally, this paper gives a counterexample for the converse of (3.89.1), establishing that the implication in (3.89.1) cannot be replaced with equivalence.
+\end{abstract}
+
+\thispagestyle{plain}
+
+\section{Proofs}
+
+\emph{Proof of (3.89.1) without Shannon}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
+	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
+	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
+	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
+	\> \>   $E^{z}_{p}$ // \\
+
+\end{tabbing}
+
+\emph{Proof of (3.89.1) with Shannon}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.15) and (3.3)}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=false))\lor(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=true))$\\
+	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land (\lnot p=false))\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land (\lnot p=true))$\\
+	\> $=$  \>  \Hint{(3.15) and (3.3)}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land p)\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land \lnot p)$\\
+	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
+	\> \>  $(E^{z}_{\lnot p}\land (p\land E^{z}_{true}))\lor(E^{z}_{\lnot p}\land (\lnot p\land E^{z}_{false}))$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $E^{z}_{\lnot p}\land ((p\land E^{z}_{true})\lor (\lnot p\land E^{z}_{false}))$\\
+	\> $=$  \>  \Hint{(3.89) Shannon}\\[\lgap]
+	\> \>   $E^{z}_{\lnot p}\land E^{z}_{p}$\\
+	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
+	\> \>   $E^{z}_{p}$ //\\
+\end{tabbing}
+
+\section{Counterexample}
+
+\emph{Counterexample for the converse of (3.89.1), $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+E can be any expression. In this counterexample, it will be assumed to be $p \lor\lnot z.$\\
+	\> \>  $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{Assumption}\\[\lgap]
+	\> \>  $(p \lor\lnot z)^{z}_{p} \impl (p \lor\lnot z)^{z}_{true}\land (p \lor\lnot z)^{z}_{false}$\\
+	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
+	\> \>  $(p \lor\lnot p) \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{Excluded middle, Definition of $false$, and Negation of $false$}\\[\lgap]
+	\> \>  $true \impl (p \lor false)\land (p \lor true)$\\
+	\> $=$  \>  \Hint{Identity and Zero of $\lor$}\\[\lgap]
+	\> \>  $true \impl p\land true$\\
+	\> $=$  \>  \Hint{Left Identity of $\impl$ and Identity of $\land$}\\[\lgap]
+	\> \>  $p$ //\\ For the converse to be a theorem, the end result would have to be $true$.
+
+\end{tabbing}
+
+\end{document}
+
+
