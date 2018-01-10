@@ -6,3 +6,7 @@
 *.gz
 
 *.log
+
+*.bbl
+
+*.blg
