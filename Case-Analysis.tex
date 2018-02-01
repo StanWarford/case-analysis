@@ -93,14 +93,30 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This paper shows two proofs for (3.89.1), $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, the theorem upon which case analysis is based. One proof utilizes (3.89) Shannon; the other does not. Both of these proofs avoid the use of deduction, which would be illegitimate given that proof techniques are not introduced until Chapter 4. Finally, this paper gives a counterexample for the converse of (3.89.1), establishing that the implication in (3.89.1) cannot be replaced with equivalence.
+This paper presents a new theorem, $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, upon which case analysis is based. It presents two proofs, one of which uses the Shannon theorem. Both of these proofs use the equational system of logic and avoid the use of deduction. Finally, this paper gives a counterexample for the converse of the new theorem, establishing that the implication cannot be replaced with equivalence.
 \end{abstract}
 
 \thispagestyle{plain}
 
-\section{Proofs}
+\section{Introduction}
 
-Gries and Schneider \cite{Gries} show ...
+\subsection{Background}
+
+Describe equational logic in contrast to Hilbert style logic.
+
+Describe Gries and Schneider \cite{Gries} in general.
+
+Describe methatheorems in general and present new metatheorem Truth implication.
+
+\subsection{Case analysis}
+
+Describe Gries and Schneider's treatment of case analysis including Shannon as justification of the metatheorem.
+
+Include the metatheorem and show how Gries justifies it using Shannon. 
+
+Present the new theorem and show how it is a more direct justification of the case analysis metatheorem.
+
+\section{Results}
 
 \emph{Proof of (3.89.1) without Shannon}:
 \begin{tabbing}
@@ -149,8 +165,6 @@ Gries and Schneider \cite{Gries} show ...
 	\> \>   $E^{z}_{p}$ \quad \myqed\\
 \end{tabbing}
 
-\section{Counterexample}
-
 \emph{Counterexample for the converse of (3.89.1), $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
 
 \begin{tabbing}
@@ -169,6 +183,8 @@ E can be any expression. In this counterexample, it will be assumed to be $p \lo
 	\> \>  $p$ \quad \myqed\\ For the converse to be a theorem, the end result would have to be $true$.
 
 \end{tabbing}
+
+\section{Conclusion}
 
 \bibliographystyle{plain}
 \bibliography{myBiblio.bib}
