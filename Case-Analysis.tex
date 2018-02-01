@@ -118,30 +118,7 @@ Present the new theorem and show how it is a more direct justification of the ca
 
 \section{Results}
 
-\emph{Proof of (3.89.1) without Shannon}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
-	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
-	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
-	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
-	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
-	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
-	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
-	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
-	\> \>   $E^{z}_{p}$ \quad \myqed \\
-
-\end{tabbing}
-
-\emph{Proof of (3.89.1) with Shannon}:
+\emph{Proof with Shannon}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
@@ -165,7 +142,30 @@ Present the new theorem and show how it is a more direct justification of the ca
 	\> \>   $E^{z}_{p}$ \quad \myqed\\
 \end{tabbing}
 
-\emph{Counterexample for the converse of (3.89.1), $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
+\emph{Proof without Shannon}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
+	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
+	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
+	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
+	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
+	\> \>   $E^{z}_{p}$ \quad \myqed \\
+
+\end{tabbing}
+
+\emph{Counterexample of the converse, $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
