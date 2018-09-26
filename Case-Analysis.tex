@@ -94,16 +94,6 @@
 \maketitle
 \begin{abstract}
 
-Statement about Hilbert-style systems and natural deduction systems.
-Equational style - computer science - Gries and Schneider.
-Case analysis.
-
-A proof calculus is a system for proving propositions through the use of axioms and inference rules. Two of the most popular proof calculi are the Hilbert system and the natural deduction system. The former is sometimes used in the high-school environment to aid in the teaching of geometry; the latter is typically taught in undergraduate symbolic logic courses. There is a stark distinction between the two systems, due to their different approaches to axiomatization and their use of inference rules. Natural deduction attempts to mimic how people naturally reason, and contains few or no axioms and numerous inference rules. The Hilbert system makes no such attempt to mimic natural language -- it contains only one inference rule - modus ponens - and a hefty amount of axiom schemes.
-
-A third proof calculus, which will be used in this paper, is the equational system. This system is widely applicable in the realm of computer science, incorporating the usual propositional and predicate calculus of the other proof systems and seamlessly extending them to reason about sets, sequences, functions, programs, and graphs. The equational system was developed in the late 1980’s by Dijkstra and Scholten and was then largely expanded by Gries and Schneider. A distinctive feature of it is its use of only four inference rules- Substitution, Leibniz, Equanimity, and Transitivity - and its parsimonious use of axioms. Its axiomatization strikes a pleasant balance between the extensive use of axioms in the Hilbert style and the lack of them in natural deduction.
-
-Despite its lesser popularity, the equational system’s cumulative structure (whereby each theorem is directly derived from a previous theorem or axiom) and its resemblance to high-school algebra make it the optimal proof calculus to expound the case analysis proof technique for which this paper presents a new metatheorem. Case analysis is sometimes referred to as proof by exhaustion, for it attempts to prove that an exhaustive set of cases leads to a specific outcome. It is instrumental in natural deduction, where it is used as an inference rule called disjunction exploitation. The technique has two stages: the first involves proving that there is an exhaustive set of cases that altogether represents all possibilities, the second part presents a proof for each individual case.
-
 This paper presents a new theorem, $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, upon which case analysis is based.
 It presents two proofs, one of which uses the Shannon theorem.
 Both of these proofs use the equational system of logic and avoid the use of the deduction proof technique (which would be illicit as case analysis precedes it).
@@ -117,11 +107,11 @@ Finally, this paper gives a counterexample for the converse of the new theorem, 
 
 \subsection{Background}
 
-Describe equational logic in contrast to Hilbert style logic and natural deduction.
+A proof calculus is a system for proving propositions through the use of axioms and inference rules. Two of the most popular proof calculi are the Hilbert system and the natural deduction system. The former is sometimes used in the high-school environment to aid in the teaching of geometry; the latter is typically taught in undergraduate symbolic logic courses. There is a stark distinction between the two systems, due to their different approaches to axiomatization and their use of inference rules. Natural deduction attempts to mimic how people naturally reason, and contains few or no axioms and numerous inference rules. The Hilbert system makes no such attempt to mimic natural language -- it contains only one inference rule, modus ponens, and a hefty amount of axiom schemes.
 
-Describe Gries and Schneider \cite{Gries} in general.
+A third proof calculus, which will be used in this paper, is the equational system. This system is widely applicable in the realm of computer science, incorporating the usual propositional and predicate calculus of the other proof systems and seamlessly extending them to reason about sets, sequences, functions, programs, and graphs. The equational system was developed in the late 1980’s by Dijkstra and Scholten and was then largely expanded by Gries and Schneider. A distinctive feature of it is its use of only four inference rules - Substitution, Leibniz, Equanimity, and Transitivity - and its parsimonious use of axioms. Its axiomatization strikes a pleasant balance between the extensive use of axioms in the Hilbert style and the lack of them in natural deduction.
 
-Describe methatheorems in general and present new metatheorem Truth implication.
+The equational system’s cumulative structure and its resemblance to high-school algebra make it the optimal proof calculus to expound the case analysis proof technique for which this paper presents a new metatheorem. Case analysis is sometimes referred to as proof by exhaustion, for it attempts to prove that an exhaustive set of cases leads to a specific outcome. It is instrumental in natural deduction, where it is used as an inference rule called disjunction exploitation. The technique has two stages: the first involves proving that there is an exhaustive set of cases that altogether represents all possibilities; the second presents a proof for each individual case.
 
 \subsection{Case analysis}
 
@@ -135,49 +125,57 @@ Present the new theorem and show how it is a more direct justification of the ca
 
 Theorem: $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$
 
-\textit{Proof with Shannon}:
+\textit{Proof with (3.89) Shannon}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
 	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.15) and (3.3)}\\[\lgap]
+	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=false))\lor(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=true))$\\
-	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
+	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land (\lnot p=false))\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land (\lnot p=true))$\\
-	\> $=$  \>  \Hint{(3.15) and (3.3)}\\[\lgap]
+	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land p)\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land \lnot p)$\\
-	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
+	\> \>  $(E^{z}_{\lnot p}\land p\land E^{z}_{true})\lor(E^{z}_{\lnot p}\land \lnot p\land E^{z}_{false})$\\
+	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
 	\> \>  $(E^{z}_{\lnot p}\land (p\land E^{z}_{true}))\lor(E^{z}_{\lnot p}\land (\lnot p\land E^{z}_{false}))$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
 	\> \>   $E^{z}_{\lnot p}\land ((p\land E^{z}_{true})\lor (\lnot p\land E^{z}_{false}))$\\
-	\> $=$  \>  \Hint{(3.89) Shannon}\\[\lgap]
+	\> $=$  \>  \Hint{(3.89) Shannon, $E^{z}_{p} \equivs (p \land E^{z}_{true}) \lor (\lnot p \land E^{z}_{false})$}\\[\lgap]
 	\> \>   $E^{z}_{\lnot p}\land E^{z}_{p}$\\
-	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
+	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
 	\> \>   $E^{z}_{p}$ \quad \myqed\\
 \end{tabbing}
 
-\emph{Proof without Shannon}:
+\emph{Proof without (3.89) Shannon}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{Identity of $\land$ and Excluded middle}\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
 	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
 	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.84) twice}\\[\lgap]
+	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
 	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.3) and (3.15)}\\[\lgap]
+	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
 	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
-	\> $=$  \>  \Hint{Symmetry and Associativity of $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
+	\> \>  $(E^{z}_{p}\land p\land E^{z}_{false})\lor(E^{z}_{p}\land \lnot p\land E^{z}_{true})$\\
+	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
 	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
-	\> $=$  \>  \Hint{Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
 	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
-	\> $\impl$  \>  \Hint{(3.76b)}\\[\lgap]
+	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
 	\> \>   $E^{z}_{p}$ \quad \myqed \\
 
 \end{tabbing}
@@ -188,16 +186,20 @@ Theorem: $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 E can be any expression. In this counterexample, it will be assumed to be $p \lor\lnot z.$\\
 	\> \>  $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{Assumption}\\[\lgap]
+	\> $=$  \>  \Hint{Assume $E = p \lor \lnot z$}\\[\lgap]
 	\> \>  $(p \lor\lnot z)^{z}_{p} \impl (p \lor\lnot z)^{z}_{true}\land (p \lor\lnot z)^{z}_{false}$\\
 	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
 	\> \>  $(p \lor\lnot p) \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
-	\> $=$  \>  \Hint{Excluded middle, Definition of $false$, and Negation of $false$}\\[\lgap]
-	\> \>  $true \impl (p \lor false)\land (p \lor true)$\\
-	\> $=$  \>  \Hint{Identity and Zero of $\lor$}\\[\lgap]
-	\> \>  $true \impl p\land true$\\
-	\> $=$  \>  \Hint{Left Identity of $\impl$ and Identity of $\land$}\\[\lgap]
-	\> \>  $p$ \quad \myqed\\ For the converse to be a theorem, the end result would have to be $true$.
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
+	\> \>  $true \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{(3.73) Left Identity of $\impl$, $true \impl p \equivs p$}\\[\lgap]
+	\> \>  $(p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{(3.8) Definition of $false$, $false \equiv \lnot true$ and (3.13) Negation of $false$, $\lnot false \equiv true$}\\[\lgap]
+	\> \>  $(p \lor false)\land (p \lor true)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lor false \equivs p$ and (3.29) Zero of $\lor$, $p \lor true \equivs true$}\\[\lgap]
+	\> \>  $p\land true$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>  $p$ \quad \\ For the converse to be a theorem, the end result would have to be $true$, not $p$.
 
 \end{tabbing}
 
